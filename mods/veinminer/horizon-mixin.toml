@@ -1,0 +1,24 @@
+[mod]
+id = "veinminer"
+version = "0.1.0"
+priority = 100
+
+[compatibility]
+horizon_revision = "e4472a7423da0740c881132d61e8e9b368bfef4c"
+
+[[module]]
+id = "runtime"
+file = "crates/horizon-client/src/game.rs"
+name = "veinminer_runtime"
+source = "runtime.rs"
+
+[[injection]]
+id = "mining"
+kind = "HEAD"
+cancellable = true
+target = "horizon_client::game::Game<'_>::break_block"
+helper = "mining.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "pos", ty = "[i32; 3]", value = "pos" },
+]
