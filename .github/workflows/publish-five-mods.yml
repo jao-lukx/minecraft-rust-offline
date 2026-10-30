@@ -1,0 +1,32 @@
+name: Publish five-mod bundle
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-five-mods.yml
+      - downloads/horizon-offline-cinco-mods-linux-x86_64.tar.gz
+      - downloads/SHA256SUMS-CINCO-MODS
+      - RELEASE-CINCO-MODS.md
+permissions:
+  contents: write
+concurrency:
+  group: publish-five-mod-bundle
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Verify bundle
+        working-directory: downloads
+        run: sha256sum --check SHA256SUMS-CINCO-MODS
+      - name: Publish release with downloadable files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view offline-cinco-mods-v0.2.1 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create offline-cinco-mods-v0.2.1 --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --title "Minecraft Rust Offline — inclui 5 mods" --notes-file RELEASE-CINCO-MODS.md
+          fi
+          gh release upload offline-cinco-mods-v0.2.1 downloads/horizon-offline-cinco-mods-linux-x86_64.tar.gz downloads/SHA256SUMS-CINCO-MODS --repo "$GITHUB_REPOSITORY" --clobber
+          gh release edit offline-cinco-mods-v0.2.1 --repo "$GITHUB_REPOSITORY" --title "Minecraft Rust Offline — inclui 5 mods" --notes-file RELEASE-CINCO-MODS.md --draft=false --prerelease

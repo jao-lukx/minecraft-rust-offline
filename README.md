@@ -3,6 +3,10 @@
 Distribuição não oficial do [Horizon](https://github.com/horizon-rust/horizon) com suporte a
 perfis locais sem login Microsoft. Preparada a pedido de **jao-lukx** pelo agente Codex.
 
+## Pacote com 5 mods incluídos
+
+[Baixe a release com Mouse Tweaks, Zoom, JEI, Sodium-inspired e Full Bright](https://github.com/jao-lukx/minecraft-rust-offline/releases/tag/offline-cinco-mods-v0.2.1). Inclui launcher atualizado e cliente Linux x86_64 já compilado com os cinco mods. [Instalação e detalhes](RELEASE-CINCO-MODS.md).
+
 ## Baixar para jogar no Linux x86_64
 
 Abra a [release offline-v0.1.0](https://github.com/jao-lukx/minecraft-rust-offline/releases/tag/offline-v0.1.0)
