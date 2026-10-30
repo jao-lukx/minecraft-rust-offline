@@ -16,7 +16,8 @@ não otimizados, para Linux x86_64 com glibc 2.39 ou superior.
 
 Este repositório é o ponto de distribuição e documentação. O snapshot completo do código
 alterado está nos assets da release, inclusive no ZIP **horizon-offline-profiles-source.zip**.
-Os arquivos automáticos “Source code” do GitHub contêm apenas este repositório de distribuição.
+Os mesmos pacotes estão na pasta [downloads](downloads/). Os arquivos automáticos “Source code”
+do GitHub contêm este repositório de distribuição; para executar, prefira o pacote Linux indicado.
 
 ## O que mudou
 

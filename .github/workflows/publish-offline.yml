@@ -1,0 +1,33 @@
+name: Publish offline download
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-offline-v0.1.0
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out distribution files
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Verify download checksums
+        working-directory: downloads
+        run: sha256sum --check SHA256SUMS
+      - name: Attach downloads and publish prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload offline-v0.1.0 \
+            downloads/horizon-offline-linux-x86_64-debug.tar.gz \
+            downloads/horizon-offline-profiles-source.zip \
+            downloads/COMO-JOGAR.md downloads/SHA256SUMS \
+            --repo "$GITHUB_REPOSITORY" --clobber
+          gh release edit offline-v0.1.0 \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --draft=false --prerelease
