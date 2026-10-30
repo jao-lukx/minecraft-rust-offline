@@ -19,6 +19,10 @@ alterado está nos assets da release, inclusive no ZIP **horizon-offline-profile
 Os mesmos pacotes estão na pasta [downloads](downloads/). Os arquivos automáticos “Source code”
 do GitHub contêm este repositório de distribuição; para executar, prefira o pacote Linux indicado.
 
+## Mods na pasta
+
+Há um [launcher atualizado que detecta arquivos `.hnmod` e compila automaticamente ao jogar](MODS-NA-PASTA.md). A versão antiga deste pacote não fazia isso.
+
 ## O que mudou
 
 - Perfis offline podem ser criados e selecionados sem login Microsoft.
